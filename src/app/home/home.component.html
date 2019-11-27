@@ -1,0 +1,40 @@
+<div class="col-md-12" style="background-color: cornflowerblue; color: white; padding: 1em; margin-bottom: 2em;">
+    <span style="font-size: 20px;">InstaCar</span>
+    <span class="pull-right mdl-button" *ngIf="user" style="color:white;" (click)="logout()"> {{ user.name }} <i class="material-icons" style="font-size: 18px; padding-left: 0.5em;">logout</i></span>
+</div>
+<div class="container">
+    <div class="col-md-8">
+        <textarea class="form-control" rows="5" id="tweet" placeholder="Have something to share..." [(ngModel)] = "message"></textarea>
+        <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent pull-right  margin-top-bottom" (click) = "postTweet()">Tweet</button>
+        <div *ngIf="user">
+        <div class="mdl-card mdl-shadow--4dp col-md-12 margin-top-bottom" *ngFor="let tweet of user.tweets">
+            <div class="mdl-card__title">
+                    {{ tweet.name }}
+                <div class="mdl-card__subtitle-text">{{ tweet.handle }}</div>            
+            </div>
+            <div class="mdl-card__supporting-text">
+                <span style="font-size: 14px;"> {{ tweet.tweet }} </span>
+                <br/>
+                <span class="pull-right"> {{ tweet.date }} </span>
+            </div>
+        </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="row margin-top-bottom">
+            <span class="col-md-9">
+                <input class="form-control" type="text" placeholder="Search for user handle to follow" aria-label="Search" [(ngModel)] = "searchHandle">
+            </span>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" (click) = "searchUser()">Search</button> 
+        </div>
+        <div class="alert alert-danger" *ngIf="showMessage">* User Handle does not exist. </div>
+        <div class="mdl-list__item mdl-shadow--2dp" *ngIf = "!!follow">
+            <span class="mdl-list__item-primary-content">
+                <i class="material-icons mdl-list__item-avatar">person</i>
+                <span>{{ follow.name }}</span>
+            </span>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button--accent" *ngIf = "!alreadyFollowing && !owner" (click)="followUser()">Follow</button>
+            <button class="mdl-button mdl-js-button mdl-button--raised mdl-button" *ngIf = "alreadyFollowing && !owner" (click)="unfollowUser()">Following</button>
+        </div> 
+    </div>
+</div>

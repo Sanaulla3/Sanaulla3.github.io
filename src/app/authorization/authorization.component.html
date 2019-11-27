@@ -1,0 +1,48 @@
+<div class="col-md-12" style="background-color: cornflowerblue; color: white; padding: 1em; margin-bottom: 2em;">
+    <span style="font-size: 20px;">InstaCar</span>
+</div>
+<div class="container">
+  <div class="col-md-8">
+  </div>
+  <div class="col-md-4">
+    <div *ngIf = "!newUser" class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h4 class="mdl-card__title-text">Login to instacar twitter</h4>
+      </div>
+      <form class="container" #f="ngForm" (ngSubmit)=" doLogin(f)">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input id="userHandle" class="mdl-textfield__input" type="text" ngModel name = "userHandle" placeholder = "user handle">
+        </div>
+        <br/>
+        <div class="mdl-textfield mdl-js-textfield">
+          <input id="password" class="mdl-textfield__input" type = "password" ngModel name = "password" placeholder = "password">
+        </div>
+        <br/><br/>
+        <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type = "submit" value = "Login">  
+        Create an account?  <a (click) = "newUser = !newUser">SignUp</a><br/><br/>
+      </form>
+    </div>
+    <div *ngIf = "newUser" class="demo-card-wide mdl-card mdl-shadow--2dp">
+      <div class="mdl-card__title">
+        <h4 class="mdl-card__title-text">Create instacar twitter</h4>
+      </div>
+      <form class="container"  #f="ngForm" (ngSubmit)="doSignup(f)">
+        <div class="mdl-textfield mdl-js-textfield">
+          <input id="fullName" class="mdl-textfield__input" type = "text" ngModel name = "fullName" placeholder = "Full Name">
+        </div>
+        <br/>
+        <div class="mdl-textfield mdl-js-textfield">
+          <input id="s-userHandle" class="mdl-textfield__input" type="text" ngModel name = "userHandle" placeholder = "user handle">
+        </div>
+        <br/>
+        <div class="mdl-textfield mdl-js-textfield">
+          <input id="s-password" class="mdl-textfield__input" type = "password" ngModel name = "password" placeholder = "password">
+        </div>
+        <br/><br/>
+        <input class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" type = "submit" value = "SignUp">  
+        Account already exists?  <a (click) = "newUser = !newUser">LogIn</a><br/><br/>
+      </form>
+    </div>
+    <div class="alert alert-danger col-md-11" *ngIf="error_msg">*{{ error_msg }} </div>
+  </div>
+</div>
